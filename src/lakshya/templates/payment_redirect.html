@@ -1,0 +1,32 @@
+{% extends "newbase.html" %}
+{% block meta %}
+<title>Payment redirect</title>
+<meta name="description" content="Lakshya an NIT Warangal alumni led registered organization">
+<meta name="keywords" content="Alumni, Students and Faculty of NITW working together to bring social change" />
+<LINK rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/style.css"></LINK>
+<LINK rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/datatable/demo_table.css"></LINK>
+<script src="{{STATIC_URL}}js/jquery.min.js"></script>	
+
+<script type="text/javascript">
+$(document).ready(function() {
+	$('#payform').submit()
+    } );
+</script>
+
+{% endblock %}
+{% block content %}
+<div class = "content_with_page_title left">
+	<div class="content_div">
+		<div id = "redirecting">
+			<h3>Redirecting to the Payment Gateway</h3>
+		</div>
+	</div>
+
+	<form action="https://www.ccavenue.com/shopzone/cc_details.jsp" id="payform" method="POST">
+	{% for name, value in payment_dict.iteritems %}
+		<input  type="hidden" name="{{ name }}" value="{{ value }}"/>
+	{% endfor %}
+	</form>
+
+</div>
+{% endblock content %}

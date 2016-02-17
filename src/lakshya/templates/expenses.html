@@ -1,0 +1,113 @@
+{% extends "newbase.html" %}
+
+{% block title %}
+<title>Expenses - Lakshya, an NITW alumni led organization</title>
+<meta name="description" content="Lakshya an NIT Warangal alumni led registered organization">
+{% endblock title %}
+
+{% block precss %}
+<LINK rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/style_v_1_0_3.css?1"></LINK>
+<LINK rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/style_1.css"></LINK>
+<style type="text/css">
+	select {
+		height: 4rem !important;
+		width: 8rem !important;
+	}
+</style>
+{% endblock precss %}
+
+{% block scripts %}
+<LINK rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/datatable/demo_table.css"></LINK>
+
+<script src="{{STATIC_URL}}js/jquery.min.js"></script>	
+<script type="text/javascript" language="javascript" src="{{STATIC_URL}}js/jquery.dataTables.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#table_id').dataTable( {
+        "sScrollY": "600px",
+        "bPaginate": true,
+        "bScrollCollapse": true,
+        "iDisplayLength" : 50
+    } );
+} );
+</script>
+{% endblock %}
+
+{%block header_slide%}
+	<a href="/team" title="Team" ><img src="{{STATIC_URL}}img/headers/funds.png" width="990" height="420" alt="Team"></a>
+{%endblock header_slide%}
+
+{% block content %}
+<div class="content_wrap_old clearfix">
+
+<div class = "content_with_page_title left">
+	<h2>Expenses</h2>
+	<div class="content_div">
+		<p>Information on expenses of Lakshya. Please <a href="/contact">contact us</a> if you need more info</p>
+<!-- 		<div>
+			<div class="expense_stats left">
+				<div class="stats_number">8</div>
+				<div class="stats_description">innovative ideas funded</div>
+				<br>
+				<br>
+				<div class="stats_number">Rs.3,30,000</div>
+				<div class="stats_description">Total funding amount</div>
+			</div>
+
+			<div class="expense_stats left">
+				<div class="stats_number">8</div>
+				<div class="stats_description">innovative ideas funded</div>
+				<br>
+				<br>
+				<div class="stats_number">Rs.3,30,000</div>
+				<div class="stats_description">Total funding amount</div>
+			</div>
+
+			<div class="expense_stats left">
+				<div class="stats_number">8</div>
+				<div class="stats_description">innovative ideas funded</div>
+				<br>
+				<br>
+				<div class="stats_number">Rs.3,30,000</div>
+				<div class="stats_description">Total funding amount</div>
+			</div>
+		</div>
+		<h3 class="cB">All Expenses</h3>
+		<p>asdfasdf asdf as df asdf as df sadf as df asdf as df asdf as fas df saf as dfsd af sa fd
+			sadf asd fas df sad fasdf asdfasdf sadf asd f asdf sad</p> -->
+		<br>
+		<table cellpadding="0" cellspacing="0" border="0" class="display" id="table_id">
+		    <thead>
+		        <tr>
+		            <th>Expense Header</th>
+		            <th>Sub-Header</th>
+		            <th>Date of Expense</th>
+		            <th>Amount</th>
+		        </tr>
+		    </thead>
+		    <tbody>
+		    	{% for expense in expenses_list %}
+			        <tr>
+			            <td>{{expense.get_expense_header_first_level_display}}</td>
+			            <td>{{expense.get_expense_header_second_level_display}}</td>
+			            <td>{{expense.date_of_expense}}</td>
+			        	<td>{{expense.amount}}</td>	
+			        </tr>			    		
+		    	{% endfor %}
+		    </tbody>
+		</table>
+		<br>
+		<br>
+	</div>
+</div>
+<div class = "right_navigation_div right">
+	<h3>About</h3>
+	<ul>
+		<li><a href="/accounts/our-core-belief">Our core belief</a></li>
+		<li><a href="/accounts/donations">Donations</a></li>
+		<li>Expenses</li>
+		<li><a href="/accounts/audits">Audits</a></li>
+	</ul>
+</div>
+</div>
+{% endblock content %}

@@ -1,0 +1,92 @@
+{% extends "newbase.html" %}
+
+{% block precss %}
+<LINK rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/style_v_1_0_3.css?1"></LINK>
+<LINK rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/style_1.css"></LINK>
+<style type="text/css">
+	.right {
+		height: 20rem;
+	}
+</style>
+{% endblock precss %}
+
+{% block header %}
+{{block.super}}
+{% include "submenu_for_old.html" %}
+{% endblock header %}
+
+{% block title %}
+<title>Pilot Projects - Lakshya, an NITW alumni led organization</title>
+<meta name="description" content="Lakshya an NIT Warangal alumni led registered organization">
+{% endblock title %}
+
+{% block scripts %}
+<script src="{{STATIC_URL}}js/jquery.min.js"></script>	
+<script type="text/javascript">
+$(function(){	
+	$(".scroll").click(function(event){		
+		event.preventDefault();
+		$('html,body').animate({scrollTop:$(this.hash).offset().top}, 500);
+	});
+});
+</script>
+{% endblock %}
+
+{%block header_slide%}
+	<a href="/team" title="Team" ><img src="{{STATIC_URL}}img/headers/projects.png" width="990" height="420" alt="Team"></a>
+{% endblock header_slide%}
+
+{% block content %}
+<div class="content_wrap_old clearfix">
+<div class = "content_with_page_title left">
+	<h2>Pilot Projects</h2>
+	<div class="content_div">
+		<p>Lakshya carries out pilot projects to test their feasibility and impact of before taking them up as a sustained activities.</p>
+		<br>
+		<a id="internships"><h3>Internships</h3></a>
+		<div>
+			<p></p>
+			<p>As part of a pilot to send NIT Warangal students to top engineering and research institute on internship programs, Lakshya arranged for two students to receive internships at IIT Madras. The more exposure students get, the more they will be able to bring back to NIT Warangal.</p>
+			<table class="internships_numbers" border="1">
+				<tr>
+					<th>Student</th><th>Guide</th><th>Subject</th>
+				</tr>
+				<tr>
+					<td>T.Viswarath</td><td>Prof.P.Chandramouli</td><td>Vibrations</td>
+				</tr>
+				<tr>
+					<td>Deepinka Agarwal</td><td>Prof.A.Ramesh</td><td>IC Engines</td>
+				</tr>
+			</table>			
+		</div>	
+		<br>		
+		<a id="ek_jodi_kapada"><h3>Ek Jodi Kapda</h3></a>
+		<div>
+			<div id="ek_jodi_kapada_desc" class="left">
+				<p>In July 2010, Lakshya took up the 'Ek Jodi Kapda' ('A pair of clothes') drive at NIT Warangal. This was originally conceived by Goonj. The drive included spreading awareness about the basic need of clothing, coordinating with student teams, collecting used clothes from students and faculty, and finally handing them over to volunteers from Whirlpool, our partners for recycling and distribution.
+</p>
+				<p>The project was a huge success with over 1800 articles of clothing collected in under 3 weeks with over 40 volunteers working for the cause.</p>
+			</div>
+			<div id = "ek_jodi_kapada_stats" class="right">
+				<h3>Impact</h3>
+				<div id="stats_number">1800+</div>
+				<div id="stats_description"><span>articles of clothing collected</span></div>
+				<br>
+				<div id="stats_number">50</div>
+				<div id="stats_description"><span>Student volunteers mobilized by Lakshya</span></div>
+			</div>
+			<div class="cB">
+				<p>For some pics, <a href="https://www.facebook.com/media/set/?set=a.165484960150787.38723.155497721149511&type=3" target="_blank">click here</a></p>
+			</div>
+		</div>
+	</div>
+</div>
+<div class = "right_navigation_div right">
+	<h3>Pilot Projects</h3>
+	<ul>
+		<li><a href="#internships" class="scroll">Internships</a></li>
+		<li><a href="#ek_jodi_kapada" class="scroll">Ek Jodi Kapda</a></li>
+	</ul>
+</div>
+</div>
+{% endblock content %}

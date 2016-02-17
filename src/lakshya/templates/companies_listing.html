@@ -1,0 +1,85 @@
+
+{% extends "base.html" %}
+{% load humanize %} 
+
+{% block title %}
+<title>Seed Fund | Lakshya, an NITW alumni led organization</title>
+<meta name="description" content="Lakshya an NIT Warangal alumni led registered organization">
+{% endblock title %}
+
+{% block content %}
+	<img src="{{STATIC_URL}}img/seed_capital_final.jpg" width="990px" height="100px" />
+	<div id="companies_listing" class="left">
+		<p>Showing {{selected_companies_count}} 
+		{% if selected_companies_count == 1 %}
+		company
+		{% else %}
+		companies
+		{% endif %}
+		{% if selected_sector %}
+		started by NITW Alumni in {{selected_sector_name}}
+		{% elif selected_batch %}
+		started by NITW Alumni of {{selected_batch}}
+		{% else %}
+		started by NITW Alumni
+		{% endif %}
+		</p>
+		<div id="companies_results">
+			{% for company in companies %}
+				<div>
+					<p><a href="/company/{{company.slug}}">{{ company.name }}</a></p>
+				</div>	
+			{% endfor %}
+		</div>
+	</div>
+	<div class="left" id="companies_listing_right_pane">
+		<div id="sectors_list">
+			<p>Industries</p>
+<<<<<<< HEAD
+			{% if selected_sector %}
+			<a href="/entrepreneurs">All ({{ total_companies_count }})</a>
+			{% else %}
+			<a href="/entrepreneurs" class="selected_link">All ({{ total_companies_count }})</a>
+			{% endif %}
+			{% for sector in sectors_list_details %}
+				<div>
+					{% if selected_sector and sector.1 == selected_sector %}
+					<a href="/entrepreneurs?sector={{ sector.1 }}" class="selected_link">{{ sector.0 }} ({{ sector.2 }})</a>
+=======
+			{% for sector in sectors_list_details %}
+				<div>
+					{% if selected_sector and sector.1 == selected_sector %}
+					<a href="/entreprenuers?sector={{ sector.1 }}" class="selected">{{ sector.0 }} ({{ sector.2 }})</a>
+>>>>>>> updatedUI
+					{% else %}
+					<a href="/entrepreneurs?sector={{ sector.1 }}">{{ sector.0 }} ({{ sector.2 }})</a>					
+					{% endif %}
+				</div>	
+			{% endfor %}			
+		</div>
+<<<<<<< HEAD
+		<div id="sectors_list">
+			<p>Countries</p>
+			{% if selected_country %}
+			<a href="/entrepreneurs">All ({{ total_companies_count }})</a>
+			{% else %}
+			<a href="/entrepreneurs" class="selected_link">All ({{ total_companies_count }})</a>
+			{% endif %}
+			{% for country in countries_list_details %}
+				<div>
+					{% if selected_country and country.0 == selected_country %}
+					<a href="/entrepreneurs?country={{ country.0 }}" class="selected_link">{{ country.0 }} ({{ country.1 }})</a>
+					{% else %}
+					<a href="/entrepreneurs?country={{ country.0 }}">{{ country.0 }} ({{ country.1 }})</a>					
+					{% endif %}
+				</div>	
+			{% endfor %}			
+		</div>
+=======
+>>>>>>> updatedUI
+<!-- 		<div id="batches_list">
+			<p>Batches</p>
+		</div> -->
+	</div>
+{% endblock content %}
+

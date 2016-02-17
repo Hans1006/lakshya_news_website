@@ -1,0 +1,61 @@
+{% extends "newbase.html" %}
+
+{% block precss %}
+<LINK rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/style_v_1_0_3.css?1"></LINK>
+<LINK rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/style_1.css"></LINK>
+<style type="text/css">
+	.q_and_a p.question {
+		margin: 3rem 0 1.5rem;
+	}
+</style>
+{% endblock precss %}
+
+{% block header %}
+{{block.super}}
+{% include "submenu_for_old.html" %}
+{% endblock header %}
+
+{% block title %}
+<title>About Financial Assistance Project - Lakshya</title>
+<meta name="description" content="Lakshya an NIT Warangal alumni led registered organization">
+{% endblock title %}
+
+{%block header_slide%}
+	<a href="/team" title="Team" ><img src="{{STATIC_URL}}img/headers/projects.png" width="990" height="420" alt="Team"></a>
+{%endblock header_slide%}
+
+{% block content %}
+<div class="content_wrap_old clearfix">
+<div class = "content_with_page_title left">
+		<div id="blockquote_div">
+			<blockquote> "Education is not an expense... it is an investment"</h3><p>-Lyndon B Johnson, Former President of the United States (1963-1969)</p></blockquote>
+		</div> 	
+	<h2>About Financial Assistance Program</h2>
+	<div class="content_div">
+		<div class="q_and_a">
+
+			<p class="question">Why should I sponsor a scholarship?</p>
+			<p class="answer">Going by trends, tuition increases by 300% every 5 years and not everyone can afford it. Apart from the tuition fee there are various other expenses including hostel fee, mess charges, text books etc. Supporting these students is not an expense, it is an investment.</p>
+
+			<p class="question">What is the impact?</p>
+			<p class="answer">Till date 22 students were benefitted through these scholarships. This kind of financial assistance relieves from immediate stress and helps them concentrate on academics. While some graduated beneficiaries got placed in top MNCs like Samsung, Oracle, and Applied Materials others moved towards their higher education in prestigious institutes like IIM-A and IISc.</p>
+			<p class="question">What is the the application process and eligibility criteria?</p>
+			<p class="answer">All UG students are eligible to apply and selection is completely based on their financial status. We invite applications from students at the beginning of the academic year which is followed by a stringent verification process. Students are ranked based primarily on their financial status in addition to their academic scores, family support system, prospects of availing and repaying loans. Eligible students are then awarded the scholarship based on the number of slots available.
+</p>
+			<p class="question">Is this a grant?</p>
+			<p class="answer">No. Students have to repay the amount at anytime during the 5 year period after graduation. This amount is used to fund the next set of scholars.</p>
+		</div>
+	</div>
+</div>
+<div class = "right_navigation_div right">
+	<h3>Financial Assistance Program</h3>
+	<ul>
+		<li><a href="/scholarships/home">Financial Assistance Program Home</a></li>
+		<li>About Financial Assistance Program</li>
+		<li><a href="/scholarships/scholars-list/16">List of Scholars</a></li>
+		<li><a href="/scholarships/funding-partners">Funding Partners</a></li>
+		<li><a href="/scholarships/apply-scholarships">Apply For Scholarships</a></li>		
+	</ul>
+</div>
+</div>
+{% endblock content %}

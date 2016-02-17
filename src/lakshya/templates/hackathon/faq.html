@@ -1,0 +1,125 @@
+{% extends "hackathon/base.html" %}
+{% block content %}
+
+<div class="form_styling">
+
+    </div>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Hackathon - Lakshya Foundation</title>
+    {% load staticfiles %}
+    {% load static %}
+    <!-- Bootstrap Core CSS -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="{% static 'css/stylish-portfolio.css' %}" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="{% static 'font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+    <body>
+        <aside class="callout" style="height:275px;">
+            <div class="text-vertical-center">
+                <h1>Frequently Asked Questions</h1>
+            </div>
+        </aside>
+
+        <aside class="call-to-action bg-primary">
+            <div class="container">
+                <div class="row">
+                    <div class="">
+         <h3>FAQ - Students</h3>
+         <h5>When and where is the hackathon?</h5>
+        {% if hackathon %}
+        <p>Hackathon starts at {{hackathon.start_time}} till {{hackathon.end_time}} at {{hackathon.venue}}</p>
+        {% else %}
+        <p>Please keep a watch on the website for upcoming hackathons.</p>
+        {% endif %}
+
+         <h5>Will food be provided?</h5>
+         <p>Yes. There will be supply of food and beverages available throughout the Hackathon.</p>
+
+         <h5>What should we bring?</h5>
+         <p>Toothbrush, paste, one pillow. We’ll be providing you with mattresses.</p>
+
+         <h5>How should we prepare? Where will we store our code for software projects?</h5>
+         <p>Come prepared with the solution concept, wireframes, and anything else that can help you with your development. DO NOT COME WITH PRE-WRITTEN CODE. You will have to store the code/content on a central repository on Github which will be provided at the venue. </p>
+
+         <h5> What’s the event going to be like?</h5>
+         <ul>
+             <li>Students will register for which problem statement they want to solve.</li>
+             <li>The teams will then work with the respective mentors to conceptualize a workable solution.</li>
+             <li>The plan for the 24 hour hackathon will be to develop a basic, limited feature working solution.</li>
+             <li>The plan is for teams to develop something as close to deployment as possible.</li>
+             <li>We understand that not all teams will be able to stay for 24 hours, or develop a solution within that time frame. Hence, teams will have to sign up to make a presentation. The presentations (consisting of working code only, no ppts) will begin at 4PM on Sunday.</li>
+             <li>We want students to stay at the venue throughout the event. But we won’t force you to stay, that’s why we’re providing all the food and mattresses. We’ll also have some fun events during the time.</li>
+         </ul>
+
+         <h5> Whom do we contact for doubts?</h5>
+         <p><a href="mailto:info@thelakshyafoundation.org" style="color:#fff">info@thelakshyafoundation.org</a>, or +91-98493 65735</p>
+
+         <h5>Are girls allowed to attend the event?</h5>
+         <p>Yes. We’ll get the required permission from the Chief Warden, hostel warden and security officials. This permission is only for registered participants.</p>
+
+         <h5>Why this hackathon?</h5>
+         <p>Hackathons are perfect places to create bare-bones solutions for existing problems in industry and society. You (the student) will get to work in an industry setting and will get to create something innovative which you know will be used. All in all, its about making use of your talent and making it visible to the outside world. Ask the previous hackathon winners about how much weight it adds to your resume!</p>
+
+         <h3>FAQ - Sponsors</h3>
+
+         <h5>How detailed should the problem description be?</h5>
+         <p>Having given the essentials for someone to solve the problem, the level of detail is left to you. If you want the solution to fit in closely with something already developed, you are free to provide additional data/resources so that students can develop accordingly. Although this event is meant to develop solutions as close to usability as possible, we also want to give students room to design as well as develop.</p>
+
+         <h5>When and for how long is the hackathon?</h5>
+         {% if hackathon %}
+        <p>Hackathon starts at {{hackathon.start_time}} till {{hackathon.end_time}} at {{hackathon.venue}}</p>
+        {% else %}
+        <p>Please keep a watch on the website for upcoming hackathons.</p>
+        {% endif %}
+
+         <h5>Who is the mentor? What is his/her role?</h5>
+         <p>A mentor is someone who can explain the problem in depth and possible solutions with students.</p>
+
+         <h5>Are companies expected to give prizes/incentives?</h5>
+         <p>This is not mandatory. However, attaching a cool prize/incentive for the team that develops the solution will attract more talent. Examples include Tshirts, gadgets, goodies, internship opportunities etc. You can indicate the incentive at the end of the document.</p>
+
+         <h5>Do the mentors have to be at NIT Warangal for the event?</h5>
+         <p>Students will select the problem statement they want to work on a week before the event. This will be the time when they can discuss the solution with you. Although not necessary, having you work with students during the event will help get a solution closest to what your company is looking for. Alternatively, the mentor can be available to guide development through Skype/Hangout with the student teams.</p>
+                    </div>
+                </div>
+                <hr>
+                <div class="text-center">
+                            <a href="/hackathon/problems/" class="btn btn-lg btn-light">Problem Statements</a>
+                            <a href="/hackathon/faq/" class="btn btn-lg btn-light">Frequently Asked Questions</a>
+                </div>
+            </div>
+        </aside>
+    </body>
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+</html>
+{% endblock content %}

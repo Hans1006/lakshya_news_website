@@ -1,0 +1,178 @@
+{% extends "hackathon/base.html" %}
+
+{% block scripts %}
+<script type="text/javascript">
+	$(function(){
+		$('a.cta.disabled').click(function() {
+			return false;
+		});
+		
+		$('#go_to_hackathon').click(function() {
+			window.location = '/hackathon/' + $(this).siblings('select').val();
+		});
+		
+		$('#hackathon_register_button').click(function() {
+		    $('#login_modal a:not(.close-reveal-modal)').each(function() {
+		        $(this).attr('href', $(this).attr('href') + '?next=/hackathon/register');
+		    });
+        	$('#login_modal').foundation('reveal', 'open');
+    	});	
+
+	});
+    
+
+</script>
+{% endblock scripts %}
+
+{% block content %}
+<div id="hackathon_home">
+	<div id="hackathon_hero">
+		<img id="hackathon_logo" src="{{STATIC_URL}}newimg/icons/hackathon_mobile.svg">
+		<div id="hackathon_hero_content_container">
+			<p id="hackathon_hero_heading">Solving real problems together</p>
+			<p>NITW hackathons are a melting pot of ideas and creative energies fuelled by passion and pizza! Students come together for a weekend of coding, hacking and making. Together with mentors and experienced hackers, they go from idea to prototype within a span of 24 to 48 hours.</p>
+		</div>
+	</div>
+	<div id="hackathon_upcoming_container">
+		<div id="hackathon_upcoming" class="content">
+			<p class="heading">Upcoming event</p>
+			<p class="title">Hackathon 5.0</p>
+			<div class="row">
+				<div class="column large-4 small-12">
+					<img class="participate_icon" src="{{STATIC_URL}}newimg/icons/hacker.svg">
+					<p class="heading">Hacker</p>
+					<p class="participate_text">Ideate, design & build to solve a specific problem using technology. Collaborate with fellow hackers across disciplines and learn more about what technology has to offer!</p>
+					{% if not user.is_authenticated %}
+                    	<div style="cursor: pointer;" class="cta hackathon" id="hackathon_register_button">Register Now</div>
+                    {% else %}
+						<a href="/hackathon/register" class="cta hackathon">Register Now</a>
+					{% endif %}
+					<!-- <p class="hint">Open now</p> -->
+				</div>
+				<div class="column large-4 small-12">
+					<img class="participate_icon" src="{{STATIC_URL}}newimg/icons/mentor.svg">
+					<p class="heading">Mentor</p>
+					<p class="participate_text">Play a vital role in hand-holding and guiding students built solutions for you, your startup or industry. Mentor them for 24 hours, become a guru for life!</p>
+					<!-- <a href="#" class="cta hackathon">Mentor a Team</a> -->
+				</div>
+				<div class="column large-4 small-12">
+					<img class="participate_icon" src="{{STATIC_URL}}newimg/icons/sponsor.svg">
+					<p class="heading">Sponsor</p>
+					<p class="participate_text">Money makes the world go round, and pays for equipment, food and caffeine. Connect us with your company or startup, help us get equipment, or a food sponsor!</p>
+					<!-- <a href="#" class="cta hackathon">Push Innovation</a> -->
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="hackathon_stats" class="content">
+		<div class="row">
+			<div class="column large-4 medium-12 small-12 home_stat">
+				<p class="hackathon_stat_number">3</p>
+				<p class="hackathon_stat_text heading">Hackathons</p>
+			</div>
+			<div class="column large-4 medium-12 small-12 hackathon_stat">
+				<p class="hackathon_stat_number">14</p>
+				<p class="hackathon_stat_text heading">Prototypes</p>
+			</div>
+			<div class="column large-4 medium-12 small-12 hackathon_stat">
+				<p class="hackathon_stat_number">250+</p>
+				<p class="hackathon_stat_text heading">Student Participants</p>
+			</div>
+		</div>
+	</div>
+	<div id="hackathon_history_container">
+		<div id="hackathon_history" class="content">
+			<p class="heading">Completed events</p>
+			<div id="hackathon_dropdown_container" class="clearfix">
+				<div>
+					<select>
+						{% for hackathon in hackathons %}
+						<option value="{{hackathon.id}}">{{hackathon.start_time|date:"M Y"}}: {{hackathon.name}}</option>
+						{% endfor %}
+					</select>
+					<a href="#" id="go_to_hackathon" class="cta hackathon">
+						<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+							 viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve">
+						<path fill="#fff" d="M79.8,48.8c0.1-0.2,0.1-0.5,0-0.8c-0.1-0.1-0.1-0.2-0.2-0.3L67.6,35.8c-0.4-0.4-1-0.4-1.4,0c-0.4,0.4-0.4,1,0,1.4l10.2,10.2
+							H21.1c-0.6,0-1,0.4-1,1c0,0.6,0.4,1,1,1h55.3L66.2,59.7c-0.4,0.4-0.4,1,0,1.4c0.2,0.2,0.4,0.3,0.7,0.3s0.5-0.1,0.7-0.3l11.9-11.9
+							C79.7,49.1,79.7,48.9,79.8,48.8z"/>
+						</svg>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="hackathon_testimonial" class="content">
+		<div class="testimonial_content_container">
+			<div class="testimonial_start_icon">
+				<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+					 viewBox="288.4 171.9 240 170.9" enable-background="new 288.4 171.9 240 170.9" xml:space="preserve">
+				<g enable-background="new    ">
+					<path fill="#f1f1f1" d="M528.4,205.3c-36.6,3.7-54.7,22.3-52,52.6h32.9v84.9h-86v-71.7c0-70.1,35-98.2,98.2-99.3L528.4,205.3z M393.5,205.3
+						c-36.6,3.7-54.7,22.3-52,52.6h32.9v84.9h-86v-71.7c0-70.1,35-98.2,98.2-99.3L393.5,205.3z"/>
+				</g>
+				</svg>
+			</div>
+			<p id="hackathon_testimonial_text" class="testimonial_text">Hiring developers for startups is a major challenge, Almabase was no exception. We discovered (and hired) our first developer after working with him during the second hackathon. Working on a problem statement is so much better than an interview. If you ask me, hackathons are THE place to recruit for tech companies - where else can you get creative, persistent, technically brilliant hackers</p>
+			<div class="testimonial_end_icon">
+				<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+					 viewBox="288.4 171.9 240 170.9" enable-background="new 288.4 171.9 240 170.9" xml:space="preserve">
+				<g enable-background="new    ">
+					<path fill="#f1f1f1" d="M295.3,171.9c63.2,1.1,98.2,29.2,98.2,99.3v71.7h-86v-84.9h32.9c2.7-30.3-15.4-48.8-52-52.6L295.3,171.9z M430.1,171.9
+						c63.2,1.1,98.2,29.2,98.2,99.3v71.7h-86v-84.9h32.9c2.7-30.3-15.4-48.8-52-52.6L430.1,171.9z"/>
+				</g>
+				</svg>
+			</div>
+		</div>
+		<img id="hackathon_testimonial_picture" src="{{STATIC_URL}}newimg/kalyan_profile.png">
+		<p id="hackathon_testimonial_name">Kalyan Kuchampudi</p>
+		<p id="hackathon_testimonial_designation">CTO, Almabase</p>
+	</div>
+	<div id="hackathon_mentorship_container">
+		<div id="hackathon_mentorship" class="content">
+			<p class="heading">Mentorship</p>
+			<p>Students are enthusiastic to build exciting products and bring creative ideas to reality. Technical mentorship from experts can shape their idea. Also, the mentors get to interact with some of the most passionate and brightest among the student community. Also, you get to relive your student days for that weekend!</p>
+			<a href="mailto:info@thelakshyafoundation.org?subject='Hey! I would love to be a mentor'" class="cta hackathon">Be a mentor</a>
+			<p class="subheading">Some previous mentors</p>
+			<div class="row">
+				{% for mentor in mentors %}
+				<div class="column small-12 large-4 mentor {% if forloop.last %}end{% endif %}">
+					<table>
+						<tr>
+							<td>
+								{% if mentor.picture %}
+								<img class="mentor_picture" src="{{mentor.picture.url}}">
+								{%else%}
+								<img class="mentor_picture" src="{{STATIC_URL}}newimg/icons/icon_profile.png">
+								{% endif %}
+							</td>
+							<td>
+								<p class="mentor_name">{{mentor.name}}</p>
+								<p class="mentor_designation"></p>
+							</td>
+						</tr>
+					</table>
+				</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+	<div id="hackathon_sponsorship_container">
+		<div id="hackathon_sponsorship" class="content">
+			<p class="heading">Sponsorship</p>
+			<p>Best of the facilities and equipment are provided for hacker students to build awesome stuff. Sponsors get visibility and the event is fertile ground to discover talent. Partnering with us will also win you brownie points on campus and add to the good karma you’ve been accumulating!</p>
+			<a href="mailto:info@thelakshyafoundation?subject='Hey!, I want to sponsor a hackathon'" class="cta hackathon">Be a sponsor</a>
+			<p class="subheading">Some previous sponsors</p>
+			<div class="row">
+				{% for sponsor in sponsors %}
+				<div class="column small-6 large-3 {% if forloop.last %}end{% endif %}">
+					<a href="{{sponsor.website}}">
+						{% if sponsor.logo %}<img src="{{sponsor.logo.url}}">{% else %}<span>{{sponsor.name}}</span>{% endif %}
+					</a>
+				</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock content %}

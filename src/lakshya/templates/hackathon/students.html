@@ -1,0 +1,4 @@
+Problem Statement, Mentor Hangout ID, Session Date, Session Time, Email, Team, Name, Branch, Roll No, Year, Mess, Gender, T-size, Course, Mobile<br/>
+{% for student in students %}
+{{student.problem}},  ,  ,  , {{student.email}}, {{student.team}}, {{student.name}}, {{student.BRANCH}}, {{student.roll_no}}, {{student.YEAR}}, {{student.MESS}}, {{student.GENDER}}, {{student.tee_shirt_size}},  {{student.COURSE}}, {{student.mobile}}<br/>
+{% endfor %}

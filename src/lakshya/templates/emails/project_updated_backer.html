@@ -1,0 +1,20 @@
+<p>Dear {{pledge.user.first_name}} {{pledge.user.last_name}},</p>
+
+<p>{{pledge.project.author.first_name}} has posted updates for campaign titled <a href="http://www.thelakshyafoundation.org/crowdfunding/project/{{pledge.project.id}}">{{pledge.project.title}}</a></p>
+
+<table>
+{% for update in updates %}
+<tr>
+	<td><p>{{update.timestamp|safe}}</p>{{update.update|safe}}
+	</td>
+</tr>
+{% endfor %}
+</table>
+
+<p>We follow an all-or-nothing funding policy. Funds are collected from backers and disbursed to the project team only if the campaign is able to raise 100% or more of its funding goal. Please contact us (info@thelakshyafoundation.org) for any queries.</p>
+
+<p>Thanks,<br/>
+NITW Crowdfund Team<br/>
+Lakshya Foundation<br/></p>
+
+

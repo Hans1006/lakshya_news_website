@@ -1,0 +1,271 @@
+{% extends "newbase.html" %}
+
+{% block precss %}
+<LINK rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/style_v_1_0_3.css?1"></LINK>
+<LINK rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/style_1.css"></LINK>
+<style type="text/css">
+	.project_gist {
+		width: 30%;
+	}
+	.content_with_page_title h2 {
+		margin-bottom: 4rem;
+	}
+	.content_div h3 {
+		margin: 3rem 0 1.5rem;
+	}
+	#innovations_list .project_gist h3 {
+		margin: 0;
+	}
+</style>
+{% endblock precss %}
+
+{% block header %}
+{{block.super}}
+{% include "submenu_for_old.html" %}
+{% endblock header %}
+
+{% block title %}
+<title>Innovations - Lakshya, an NITW alumni led organization</title>
+<meta name="description" content="Lakshya an NIT Warangal alumni led registered organization">
+{% endblock title %}
+
+{% block scripts %}
+<!-- <script src="{{STATIC_URL}}js/jquery.min.js"></script> -->
+<script src="http://gettopup.com/releases/latest/top_up-min.js"></script>
+<script type="text/javascript">
+$(function(){
+	$("#{{project_name}}").addClass("selected")
+	$(".desc").hide();
+	$(".{{project_name}}").show();	
+	$(".project_gist").click(function(){
+		$(".desc").hide();
+		$("."+this.id).show();
+		$(".project_gist").removeClass("selected")
+		$(this).addClass("selected")
+	});
+});
+</script>
+{% endblock %}
+
+{%block header_slide%}
+	<a href="/team" title="Team" ><img src="{{STATIC_URL}}img/headers/projects.png" width="990" height="420" alt="Team"></a>
+{% endblock header_slide%}
+
+{% block content %}
+<div class="content_wrap_old clearfix">
+<div class = "content_with_page_title left">
+	<h2>Innovations</h2>
+	<div class="content_div">
+		<div id="innovations_list">
+			<div id="hovamarine" class="project_gist left" >
+				<h3>Hovamarine</h3>
+			</div>
+			<div id="smart_meter" class="project_gist left" >
+				<h3>Smart Meter</h3>
+			</div>
+			<div id="concrete" class="project_gist left" >
+				<h3>SCC using RA</h3>
+			</div>	
+			<div id="quake_SCC" class="project_gist left" >
+				<h3>Earthquake Resistant SCC</h3>
+			</div>
+
+			<div id="nanosilica_scc" class="project_gist left" >
+				<h3>Nano-Silica in SCC</h3>
+
+			</div>
+			<div id="cloudsgreen" class="project_gist left" >
+				<h3>cloudsgreen.com</h3>
+
+			</div>
+			<div id="speech_recog" class="project_gist left" >
+				<h3>Advanced Speech Recognition System</h3>
+			</div>
+		</div>
+		<div id="innovation_description" class="cB">
+			<div class = "hovamarine desc hidden">
+				<h3>Hovamarine</h3>
+				<p>The Hovomarine is an unmanned amphibious vehicle, which combines the capabilities of a hovercraft and a submarine. It has potentially vast applications in the field of search and rescue, recovery of space modules from the sea and maritime security.</p>
+					<dl>
+					    <dt>Team :</dt>
+					    <dd>Joby Yeldo</dd>
+					    <dt>Guide :</dt>
+					    <dd>Prof.A.Venu Gopal</dd>
+					    <dt>Funding :</dt>
+					    <dd>Rs.55,000</dd>
+					</dl>​
+				<h3 class="cB">Pictures</h3>
+
+    			<div id="hovamarine-pics">
+      				<a href="{{STATIC_URL}}img/innovation/hovamarine/1.jpg"><img src="{{STATIC_URL}}img/innovation/hovamarine/1-thumb.jpg"/></a>
+      				<a href="{{STATIC_URL}}img/innovation/hovamarine/2.jpg"><img src="{{STATIC_URL}}img/innovation/hovamarine/2-thumb.jpg"/></a>      				
+      				<a href="{{STATIC_URL}}img/innovation/hovamarine/4.jpg"><img src="{{STATIC_URL}}img/innovation/hovamarine/4-thumb.jpg"/></a>      				
+      				<a href="{{STATIC_URL}}img/innovation/hovamarine/5.jpg"><img src="{{STATIC_URL}}img/innovation/hovamarine/5-thumb.jpg"/></a>
+    			</div>
+			    <script type="text/javascript">
+			      TopUp.addPresets({
+			        "#hovamarine-pics a": {
+			          title: "Gallery {alt} ({current} of {total})",
+			          group: "hovamarine-pics",
+			          readAltText: 1,
+			          shaded: 1
+			        }
+			      });
+			    </script>
+
+				<h3 class="cB">Updates</h3>
+				<ul>
+					<li>Patent application process is underway, NIT Warangal's first. The institute will fund the patent application.</li>
+					<li>The Hovomarine is planned to be displayed in the NITW Centre for Innovation and Incubation</li>
+				</ul>				
+			</div>
+
+			<div class = "smart_meter desc hidden">
+				<h3>Smart Meter</h3>
+				<p>The Smart Meter is a device which will automate collection of data from domestic electric meters. The scope also include developing a software module to provide advanced usage analytics.</p>
+				<dl>
+				    <dt>Team :</dt>
+				    <dd>Setlur Abhiram, Lokesh Chandra, Ravitheja, Rahul P</dd>
+				    <dt>Guide :</dt>
+				    <dd>Prof.D.V.S.S Siva Sarma</dd>
+				    <dt>Funding :</dt>
+				    <dd>Rs.20,000</dd>
+				</dl>​			
+				<h3 class="cB">Updates</h3>
+				<ul>
+					<li>Graphical User Interface to send SMS to the remote meter end GSM developed</li>
+				</ul>
+
+
+			</div>
+			<div class = "concrete desc hidden">
+				<h3>Recycled Concrete</h3>
+				<p>Self Compacting Concrete using recycled aggregate is a research project to test usage of concrete from demolished structures to produce new concrete. As opposed to the current industry which uses such 'recycled aggregate' for pavemanet blocks and tiles, this research aims at producing concrete capable of bearing heavy loads.</p>
+				<dl>
+				    <dt>Team :</dt>
+				    <dd>Sumanth Reddy</dd>
+				    <dt>Guide :</dt>
+				    <dd>Dr.Rathish Kumar</dd>
+				    <dt>Funding :</dt>
+				    <dd>Rs.56,000</dd>
+				</dl>​	
+
+				<h3 class="cB">Pictures</h3>
+    			<div id="recycled-concrete-pics">
+      				<a href="{{STATIC_URL}}img/innovation/recycled-concrete/1.jpg"><img src="{{STATIC_URL}}img/innovation/recycled-concrete/1-thumb.jpg"/></a>
+      				<a href="{{STATIC_URL}}img/innovation/recycled-concrete/2.jpg"><img src="{{STATIC_URL}}img/innovation/recycled-concrete/2-thumb.jpg"/></a>
+      				<a href="{{STATIC_URL}}img/innovation/recycled-concrete/5.jpg"><img src="{{STATIC_URL}}img/innovation/recycled-concrete/5-thumb.jpg"/></a>
+      				<a href="{{STATIC_URL}}img/innovation/recycled-concrete/3.jpg"><img src="{{STATIC_URL}}img/innovation/recycled-concrete/3-thumb.jpg"/></a>      				
+      				<a href="{{STATIC_URL}}img/innovation/recycled-concrete/4.jpg"><img src="{{STATIC_URL}}img/innovation/recycled-concrete/4-thumb.jpg"/></a>      				
+    			</div>
+			    <script type="text/javascript">
+			      TopUp.addPresets({
+			        "#recycled-concrete-pics a": {
+			          title: "Gallery {alt} ({current} of {total})",
+			          group: "recycled-concrete-pics",
+			          readAltText: 1,
+			          shaded: 1
+			        }
+			      });
+			    </script>
+
+				<h3 class="cB">Updates</h3>
+				<ul>
+					<li>Over 300 concrete casted and tested with various proportions of recycled aggregate</li>
+					<li>Project abstarct shortlisted for 3rd International Conference for Sustainable Construction Materials and Technologies SCMT3, Kyoto, Japan in August 2013</li>
+				</ul>			</div>
+
+
+			<div class = "quake_SCC desc hidden">
+				<h3>Earthquake Resistant SCC</h3>
+				<p>As Concrete is brittle under tensile loading, its mechanical properties may be improved by randomly oriented short discrete fibres. Ductility of concrete is improved with fibre reinforced cementitious composites. To provide additional confinement to concrete, Ferrocement shell can be used. It is expected that this material will enormously modify the post ultimate behaviour and thus contributes in increasing the energy absorption capacity of structures.</p>
+
+				<dl>
+				    <dt>Team :</dt>
+				    <dd>M.Srirama Chand</dd>
+				    <dt>Guide :</dt>
+				    <dd>Dr.Rathish Kumar</dd>
+				    <dt>Funding :</dt>
+				    <dd>Rs.40,000 (Allocated)</dd>
+				</dl>​	
+				<h3 class="cB">Updates</h3>
+				<ul>
+					<li>This project will be guided as per the NITW-Lakshya MoU</li>
+				</ul>
+			</div>
+
+
+			<div class = "nanosilica_scc desc hidden">
+				<h3>Nano-Silica in SCC</h3>
+				<p>Nano particles have been applied in many fields to fabricate new materials with novel functions due to their unique physical and chemical properties. It is expected that Self Compacting Concrete (SCC) containing silica nanoparticles will have better mechanical properties compared with the SCC without nano-silica. An experimental investigation will be carried out to study and record the influence of nano-silica in SCC.</p>
+
+				<dl>
+				    <dt>Team :</dt>
+				    <dd>K.Rakesh</dd>
+				    <dt>Guide :</dt>
+				    <dd>Dr.S.Venkateswara Rao</dd>
+				    <dt>Funding :</dt>
+				    <dd>Rs.40,000 (Allocated)</dd>
+				</dl>​	
+				<h3 class="cB">Updates</h3>
+				<ul>
+					<li>This project will be guided as per the NITW-Lakshya MoU</li>
+				</ul>
+			</div>
+
+
+			<div class = "cloudsgreen desc hidden">
+				<h3>cloudsgreen.com</h3>
+				<p>Cloudsgreen.com is an online portal to generate, store and manage e-receipts. Journal entries and cash flows are updated without manual intervention, thus eliminating paper receipts altogether. This site is also extremely light-weight so that the time to load is drastically reduced.</p>
+
+				<dl>
+				    <dt>Team :</dt>
+				    <dd>Shashank, Manoj Krishna</dd>
+				    <dt>Guide :</dt>
+				    <dd>Dr.K.Padma</dd>
+				    <dt>Funding :</dt>
+				    <dd>Rs.40,000 (Allocated)</dd>
+				</dl>​		
+				<h3 class="cB">Updates</h3>
+				<ul>
+					<li>This project will be guided as per the NITW-Lakshya MoU</li>
+				</ul>
+			</div>
+
+
+			<div class = "speech_recog desc hidden">
+				<h3>Advanced Speech Recognition System</h3>
+				<p>The easiest way to communicate with the machines would be to just “talk” to them. In other words, the speech controlled devices are the easiest to work with. The team will work to develop a device which can control home appliances by the user's speech. The scope can be extended to other electrically powered devices.</p>
+
+				<dl>
+				    <dt>Team :</dt>
+				    <dd>P. Surya, B. Sree Kalyani, G. Nikhilendra, E. Sharan</dd>
+				    <dt>Guide :</dt>
+				    <dd>Smt. P. Prithvi</dd>
+				    <dt>Funding :</dt>
+				    <dd>Rs.40,000 (Allocated)</dd>
+				</dl>​		
+				<h3 class="cB">Updates</h3>
+				<ul>
+					<li>This project will be guided as per the NITW-Lakshya MoU</li>
+				</ul>
+			</div>
+
+
+
+
+
+
+		</div>
+	</div>
+</div>
+<div class = "right_navigation_div right">
+	<h3>Innovation Support Program</h3>
+	<ul>
+		<li><a href="/innovation/home">Innovation Support Program Home</a></li>
+		<li><a href="/innovation/about-innovation-project">About Innovation Support Program</a></li>
+		<li>Innovations list</li>
+	</ul>
+</div>
+</div>
+{% endblock content %}

@@ -1,0 +1,133 @@
+{% extends "hackathon/base.html" %}
+{% block meta %}
+	<meta property="og:image" content="{{STATIC_URL}}newimg/hero_hackathon.png" />
+	<meta property="og:title" content="NITW Hackathon 5.0 - Jan 30,31" />
+	<meta property="og:description" content="NITW hackathons are a melting pot of ideas and creative energies fuelled by passion and food! Students come together for a weekend of coding, hacking and making. Together with mentors and experienced hackers, they go from idea to prototype within a span of 24 hours." />
+{% endblock meta %}
+
+{% block scripts %}
+<script type="text/javascript">
+	$(function() {
+		$('#hackathon_register_button').click(function() {
+		    $('#login_modal a:not(.close-reveal-modal)').each(function() {
+		        $(this).attr('href', $(this).attr('href') + '?next=/hackathon/register');
+		    });
+        	$('#login_modal').foundation('reveal', 'open');
+    	});	
+	});
+</script>
+{% endblock scripts %}
+
+{% block content %}
+<div id="hackathon_detail">
+	<div id="hackathon_detail_hero" style="background-image: url('{% if hackathon.banner %}{{hackathon.banner.url}}{% else %}{{STATIC_URL}}newimg/hero_hackathon.png{% endif %}');">
+		<div class="content">
+			<div id="hackathon_detail_hero_content_container">
+				<p id="hackathon_date">{{hackathon.start_time|date:"d M Y"}}</p>
+				<p id="hackathon_name">{{hackathon.name}}</p>
+			</div>
+		</div>
+	</div>
+	<div id="hackathon_detail_stats_container">
+		<div id="hackathon_detail_stats" class="content">
+			<div class="row">
+				<div class="column large-4 medium-12 small-12 home_stat">
+					<p class="hackathon_stat_number">{{participant_count}}</p>
+					<p class="hackathon_stat_text heading">Hackers</p>
+				</div>
+				<div class="column large-4 medium-12 small-12 hackathon_stat">
+					<p class="hackathon_stat_number">{{problem_statements.count}}</p>
+					<p class="hackathon_stat_text heading">Problem Statements</p>
+				</div>
+				<div class="column large-4 medium-12 small-12 hackathon_stat">
+					<p class="hackathon_stat_number">{{mentors.count}}</p>
+					<p class="hackathon_stat_text heading">Mentors</p>
+				</div>
+			</div>
+			<div class="row" id="hackathon_actions">
+				<div class="column small-12 medium-6 large-6">
+					{% if hackathon.report %}
+						<a href="{{hackathon.report.url}}" target="_blank" class="cta hackathon hackathon_action_link"><img src="{{STATIC_URL}}newimg/icons/download.svg"><span>Download PDF Report</span></a>
+					{% else %}
+						<h3>Hackathon Report will be out soon!</h3>
+					{% endif %}
+				</div>	
+				<div align="center" class="column small-12 medium-6 large-6">
+					{% if hackathon.facebook_event_link %}
+					<a href="{{hackathon.facebook_event_link}}" target="_blank" class="cta hackathon hackathon_action_link"><img src="{{STATIC_URL}}newimg/icons/facebook_white.svg"><span>Facebook Event</span></a>
+					{% endif %}
+				</div>			
+			</div>
+			{% if not user.is_authenticated %}
+            	<div style="cursor: pointer;" class="cta hackathon" id="hackathon_register_button">Register Now</div>
+            {% else %}
+				<div><a href="/hackathon/register" class="cta hackathon">Register Now</a></div>
+			{% endif %}				
+	</div>
+	<div id="hackathon_problem_statements" class="content">
+		<p class="heading">Problem Statements</p>
+		<table>
+			{% for problem_statement in problem_statements %}
+			<tr title="{{problem_statement.summary}}">
+				<td>{{forloop.counter}}</td>
+				<td>{{problem_statement.name}}</td>
+				<td><a href="{{problem_statement.add_link}}" target="_blank">View</a></td>
+			</tr>
+			{% endfor %}
+		</table>
+	</div>
+	{% if hackathon.gallery_link_image %}
+	<div id="hackathon_gallery_container">
+		<div id="hackathon_gallery" class="content">
+			<p class="heading">Gallery</p>
+			<a href="{{hackathon.gallery_link}}">
+				<img src="{{hackathon.gallery_link_image.url}}">
+			</a>
+		</div>
+	</div>
+	{% endif %}
+	<div id="hackathon_mentorship" class="content">
+		<p class="heading">Mentors</p>
+		<div class="row">
+			{% for mentor in mentors %}
+			<div class="column small-12 large-4 mentor {% if forloop.last %}end{% endif %}">
+				<table>
+					<tr>
+						<td>
+							{% if mentor.picture %}
+								<img class="mentor_picture" src="{{mentor.picture.url}}">
+							{%else%}
+								<img class="mentor_picture" src="{{STATIC_URL}}newimg/icons/icon_profile.png">
+							{% endif %}
+						</td>
+						<td>
+							<p class="mentor_name">{{mentor.name}}</p>
+							<p>
+							{% if mentor.linkedin_profile %}
+								<a href={{mentor.linkedin_profile}}><img src="{{STATIC_URL}}newimg/icons/linkedin.png"></a>
+							{% endif %}
+							</p>
+							<!-- <p class="mentor_designation"></p> -->
+						</td>
+					</tr>
+				</table>
+			</div>
+			{% endfor %}
+		</div>
+	</div>
+	<div id="hackathon_sponsorship_container">
+		<div id="hackathon_sponsorship" class="content">
+			<p class="heading">Sponsors</p>
+			<div class="row">
+				{% for sponsor in sponsors %}
+				<div class="column small-6 large-3 {% if forloop.last %}end{% endif %}">
+					<a href="{{sponsor.website}}">
+						{% if sponsor.logo %}<img src="{{sponsor.logo.url}}" title="{{sponsor.name}}">{% else %}<span>{{sponsor.name}}</span>{% endif %}
+					</a>
+				</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock content %}

@@ -1,0 +1,134 @@
+{% extends "hackathon/base.html" %}
+{% block meta %}
+    <meta property="og:image" content="{{STATIC_URL}}newimg/hero_hackathon.png" />
+    <meta property="og:title" content="Register for NITW Hackathon 5.0" />
+    <meta property="og:description" content="Register for the NITW Hackathon 5.0 to take place on Jan 30, 31" />
+{% endblock meta %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+{% block scripts %}
+<script type="text/javascript">
+    $(function(){               
+        $('#hackathon_register_button').click(function() {
+            $('#login_modal a:not(.close-reveal-modal)').each(function() {
+                $(this).attr('href', $(this).attr('href') + '?next=/hackathon/register');
+            });
+            $('#login_modal').foundation('reveal', 'open');
+        }); 
+
+    });
+    
+
+</script>
+{% endblock scripts %}
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Hackathon - Lakshya Foundation</title>
+    {% load staticfiles %}
+    {% load static %}
+    <link href="{% static 'css/hackathon/register.css' %}" rel="stylesheet">
+    <!-- Bootstrap Core CSS -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="{% static 'css/stylish-portfolio.css' %}" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="{% static 'font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+    <body>
+            <!--FB Share button code starts here-->
+            <div id="fb-root"></div>
+            <script>(function(d, s, id) {
+              var js, fjs = d.getElementsByTagName(s)[0];
+              if (d.getElementById(id)) return;
+              js = d.createElement(s); js.id = id;
+              js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.5&appId=1491007234499273";
+              fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));</script>
+            <!--FB Share button code end here-->
+
+        <aside class="callout" style="height:275px;">
+            <div class="text-vertical-center">
+                <h1 style="color:#ffffff">Registration</h1>
+                <h2 style="color:#ffffff">Hackathon 5.0</h2>
+                {% if not login_needed %}
+                <!-- <h2 style="color:#ffffff">Welcome {{user.first_name}}</h2> -->
+                {% endif %}
+            </div>
+        </aside>
+
+        <aside class="call-to-action bg-primary" >
+            <div class="container">
+                <div class="row">
+                    {% if finished %}
+                        <h3>Registrations for Hackathon 5.0 are closed</h3>
+                        <!-- <hr class="small"> -->
+                    {% elif registrations_full %}
+                        <h3>Registrations for Hackathon 5.0 have reached {{limit}} and are closed (for now). We will let everyone know about re-opening registrations on our <a href = "https://www.facebook.com/events/480687235450724/" target="_blank" style="color:#000; font-size: 14pt;">Facebook Events Page.</a></h3>
+                    {% elif registrations_deadline %}
+                        <h3>Registrations for Hackathon 5.0 are closed. Follow us on our <a href = "https://www.facebook.com/events/480687235450724/" target="_blank" style="color:#000; font-size: 14pt;">Facebook Events Page </a>for the latest.</h3>
+                    {% elif login_needed %}
+                        <div style="cursor: pointer;" class="cta hackathon" id="hackathon_register_button">Please click here to login before registering</div>
+                    {% elif registered %}
+                        <h3 align="center">You have already registered</h3>
+                        {% for reg_user in registered_user %}
+                            <div align="center" style="color:#000000">Name - {{ reg_user.user.first_name }} {{ reg_user.user.last_name }}</div>
+                            <div align="center" style="color:#000000">Problem - {{ reg_user.problem }} </div>
+                            <div align="center" style="color:#000000">Team - {{ reg_user.team }} </div>
+                        {% endfor %}
+                        </br></br>
+                        <div align="center">
+                            <h3><span class="fb-share-button" data-href="https://www.facebook.com/events/480687235450724/" data-layout="button"></span> the event with friends!</h3>
+                        </div>
+                        </br></br>
+                        <div align="center">Write to us at info@TheLakshyaFoundation.org for queries</div>
+                        <!-- <hr class="small"> -->
+                    {% else %}
+                    <form method="post" action="/hackathon/register/">{% csrf_token %}
+                    {% for field in form %}
+                    <div class="col-lg-6">
+                        {{ field.errors }}
+                        {{ field.label_tag }} {{ field }}
+                    </div>                   
+                    {% endfor %}
+                    <div class="text-center">
+                    <p><input type="checkbox" required> I agree to adhere by the <a href="/hackathon/code/" style="color:#000; font-size:14px; text-decoration: underline">Code of Conduct</a></p>
+                        <button type="submit" class="btn btn-lg btn-light">Register</button>
+                    </div>
+                    </form>
+                    {% endif %}
+                </div>
+                <hr>
+                <div class="text-center">
+                            <a href="/hackathon/problems/" class="btn btn-lg btn-light">Problem Statements</a>
+                            <a href="/hackathon/faq/" class="btn btn-lg btn-light">Frequently Asked Questions</a>
+                </div>
+            </div>
+        </aside>
+    </body>
+
+    <!-- jQuery -->
+<!--     // <script src="{{STATIC_URL}}js/jquery.js"></script>
+
+    // Bootstrap Core JavaScript
+    // <script src="{{STATIC_URL}}js/bootstrap.min.js"></script> -->
+</html>
+{% endblock content %}

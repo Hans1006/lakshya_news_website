@@ -1,0 +1,150 @@
+{% extends "newbase.html" %}
+{% load humanize %}
+
+{% block precss %}
+<LINK rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/style_v_1_0_3.css?1"></LINK>
+<LINK rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/style_1.css"></LINK>
+<style type="text/css">
+	select {
+		height: 4rem !important;
+		width: 8rem !important;
+	}
+</style>
+{% endblock precss %}
+
+{% block title %}
+<title>Donations- Lakshya, an NITW alumni led organization</title>
+<meta name="description" content="Lakshya an NIT Warangal alumni led registered organization">
+{% endblock title %}
+
+{% block scripts %}
+<LINK rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/datatable/demo_table.css"></LINK>
+<script type="text/javascript" src= "{{STATIC_URL}}js/jquery.min.js"></script>
+<script type="text/javascript" language="javascript" src="{{STATIC_URL}}js/jquery.dataTables.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#table_id').dataTable({
+        "sScrollY": "600px",
+        "bPaginate": true,
+        "bScrollCollapse": true,
+        "iDisplayLength" : 50,
+	"aaSorting": [[ 3, "desc" ]]
+    } );
+} );
+</script>
+{% endblock scripts %}
+
+{%block header_slide%}
+	<a href="/team" title="Team" ><img src="{{STATIC_URL}}img/headers/funds.png" width="990" height="420" alt="Team"></a>
+{%endblock header_slide%}
+
+{% block content %}
+<div class="content_wrap_old clearfix">
+
+<div class = "content_with_page_title left">
+	<h2>Donations</h2>
+	<div class="content_div">
+		<p>Information on donations received by Lakshya. Please <a href="/contact">contact us</a> if you need more info</p>
+		<div>
+			<div class="expense_stats left">
+				<div class="stats_number">{{total_donors}}</div>
+				<div class="stats_description">Number of Unique Donors</div>
+			</div>
+
+			<div class="expense_stats left">
+				<div class="stats_number">{{total_donation_amount|floatformat:"0"|intcomma}}</div>
+				<div class="stats_description">Total Amount Raised</div>
+			</div>
+
+			<div class="expense_stats left">
+				<div class="stats_number">{{avg_donation_amount|floatformat:"0"|intcomma}}</div>
+				<div class="stats_description">Avg Donation by a Donor</div>
+			</div>
+		</div>
+
+<!-- top 3 donors -->
+	<table>
+		<tr>
+		<td align="centre" valign="top" width="45%">
+		<table cellpadding="5" cellspacing="0" border="0" class="" id="">
+		<caption><h3 class="cB">Top Donors</h3></caption>
+		        <tr>
+		            <th>Name</th>
+		            <th>Amount</th>
+		        </tr>
+
+		    	{% for name, total in top_donor_details_list %}
+		        <tr>
+		            <td>{{name}}</td>
+		            <td>{{total}}</td>
+		        </tr>
+		    	{% endfor %}
+		</table>
+		</td>
+<!-- ends here -->
+
+<!-- most frequesnt 3 donors -->
+		<td align="centre" valign="top" >
+		<table cellpadding="5" cellspacing="0" border="0" class="" id="">
+		<caption><h3 class="cB">Most Frequent Donors</h3></caption>
+		        <tr>
+		            <th>Name</th>
+		            <th>No. of donations</th>
+		            <th>Amount</th>
+		        </tr>
+		    	{% for name, count, total in freq_donor_details_list %}
+		        <tr align="center" valign="top" >
+		            <td>{{name}}</td>
+		            <td>{{count}}</td>
+		            <td>{{total}}</td>
+		        </tr>
+		    	{% endfor %}
+		    
+		</table>
+		</td>
+		</tr>
+	</table>
+<!-- ends here -->
+
+		<h3 class="cB">All Donations</h3>
+		<!-- <p>asdfasdf asdf as df asdf as df sadf as df asdf as df asdf as fas df saf as dfsd af sa fd -->
+			<!-- sadf asd fas df sad fasdf asdfasdf sadf asd f asdf sad</p> -->
+		<br>
+		<table cellpadding="0" cellspacing="0" border="0" class="display" id="table_id">
+		    <thead>
+		        <tr>
+		            <th>Name</th>
+		            <th>Batch</th>
+		            <th>Branch</th>
+		            <th>Amount</th>
+		            <th>Last Donated On</th>
+		        </tr>
+		    </thead>
+		    <tbody>
+		    	{% for name, year_of_passing, department, total, last_donated_on in donor_details_list %}
+			        <tr>
+			            <td>{{name}}</td>
+			            <td>{{year_of_passing}}</td>
+			            <td>{{department}}</td>
+			        	<td>{{total}}</td>	
+			        	<td>{{last_donated_on}}</td>	
+			        </tr>			    		
+		    	{% endfor %}
+		    </tbody>
+		</table>
+		<br>
+		<br>
+	</div>
+</div>
+<div class = "right_navigation_div right">
+	<h3>About</h3>
+	<ul>
+		<li><a href="/accounts/our-core-belief">Our core belief</a></li>
+		<li>Donations</li>
+		<li><a href="/accounts/expenses">Expenses</a></li>
+		<li><a href="/accounts/audits">Audits</a></li>
+	</ul>
+</div>
+
+</div>
+{% endblock content %}

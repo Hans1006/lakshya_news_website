@@ -1,0 +1,71 @@
+{% extends "newbase.html" %}
+
+{% block title %}
+<title>Core belief - Lakshya, an NITW alumni led organization</title>
+<meta name="description" content="Lakshya an NIT Warangal alumni led registered organization">
+{% endblock title %}
+
+{% block precss %}
+<LINK rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/style_v_1_0_3.css?1"></LINK>
+<LINK rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/style_1.css"></LINK>
+<style type="text/css">
+	.right_navigation_div {
+		height: 20rem;
+	}
+</style>
+{% endblock precss %}
+
+{%block header_slide%}
+			<a href="/team" title="Team" ><img src="{{STATIC_URL}}img/headers/funds.png" width="990" height="420" alt="Team"></a>
+{% endblock header_slide%}
+
+{% block content %}
+<div class="content_wrap_old clearfix">
+
+<div class = "content_with_page_title left">
+	<h2>Our core belief</h2>
+
+<!--we really believe in trans-->
+<!--one of our projects is dedicated to this-->
+<!--please contact us if you want answers-->
+
+
+	<div id="our_core_belief" class="content_div">
+		<div id="blockquote_div">
+			<blockquote>“Truth never damages a cause that is just.” 
+					<p>― Mahatma Gandhi</p>
+			</blockquote>
+		</div>
+		<p>Transparency has been a cornerstone of Lakshya since its inception. We strongly believe that a transparent system will not only help build trust, but will also be a guiding force in our work.</p>
+		<div class="project_gist_list">
+			<div class="project_gist left" >
+				<img src="{{STATIC_URL}}/img/rupee-black.jpg" />
+				<a href="/accounts/donations"><h3>Donations</h3></a>
+				<p>List of all donations received</p>
+			</div>
+			<div class="project_gist left" >
+				<img src="{{STATIC_URL}}/img/rupee-red.jpg" />
+				<a href="/accounts/expenses"><h3>Expenses</h3></a>
+				<p>List of all expenditure incurred</p>
+			</div>
+			<div class="project_gist left" >
+				<img src="{{STATIC_URL}}/img/audit.jpg" />
+				<a href="/accounts/audits"><h3>Audits</h3></a>
+				<p>Audited financials carried out by a registered CA</p>
+			</div>			
+		</div>
+		<br>
+		<p class="cB" >For any queries, <a href="/contact">contact us</a></p>
+	</div>
+</div>
+<div class = "right_navigation_div right">
+	<h3>About</h3>
+	<ul>
+		<li>Our core belief</li>
+		<li><a href="/accounts/donations">Donations</a></li>
+		<li><a href="/accounts/expenses">Expenses</a></li>
+		<li><a href="/accounts/audits">Audits</a></li>
+	</ul>
+</div>
+</div>
+{% endblock content %}

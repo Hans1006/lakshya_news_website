@@ -1,0 +1,126 @@
+{% extends "newbase.html" %}
+
+{% block precss %}
+<LINK rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/style_v_1_0_3.css?1"></LINK>
+<LINK rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/style_1.css"></LINK>
+<style type="text/css">
+	li {
+		list-style: disc;
+	}
+	.content_with_page_title h2 {
+		margin: 2rem 0 4rem;
+	}
+	.content_div h3 {
+		margin: 3rem 0 1.5rem;
+	}
+	.scholar_year_list_with_head .year {
+		margin: 3rem 0 1.5rem;
+	}
+	.right {
+		height: 35rem;
+	}
+	.right li {
+		list-style: none;
+	}
+</style>
+{% endblock precss %}
+
+{% block header %}
+{{block.super}}
+{% include "submenu_for_old.html" %}
+{% endblock header %}
+
+{% block title %}
+<title>Financial Assistance - Lakshya, an NITW alumni led organization</title>
+<meta name="description" content="Lakshya an NIT Warangal alumni led registered organization">
+{% endblock title %}
+{%block header_slide%}
+	<a href="/team" title="Team" ><img src="{{STATIC_URL}}img/headers/projects.png" width="990" height="420" alt="Team"></a>
+{% endblock header_slide%}
+
+{% block content %}
+<div class="content_wrap_old clearfix">
+<div class = "content_with_page_title left">
+	<h2>Financial Assistance Program</h2>
+	<div class="content_div">
+		<div id="innovation_project_desc" class="left">
+			<p>Lakshya provides scholarships to students who cannot afford the fee. <br>
+				Ours is a stress free loan model that is </p>
+				<ul>
+					<li>interest free</li>
+					<li>collateral free </li>
+					<li>with repayment period of five years</li>
+				</ul>
+			<p>We do a thorough verification (which includes going to the applicants house and verifing) so as to ensure the scholarships are given only to deserving students. Number of scholarships has been capped to 11 per year.
+			</p>
+		</div>
+		<div id = "innnovation_stats" class="right">
+			<h3>Impact</h3>
+			<div class="stats_number">22</div>
+			<div class="stats_description">students funded</div>
+			<br>
+			<div class="stats_number">&#x20B9; 15,00,000</div>
+			<div class="stats_description">Funds disbursed for scholarships</div>
+		</div>
+		<div class="cB">
+			<p></p>
+		</div>
+		<h3>Funding partners</h3>
+		<p>Many individuals, foundations and groups have come forward to generously support students chosen by Lakshya.</p>
+		<ul class="left funding_partners_list">
+			{% for funding_partner in funding_partners_list %}
+				{% if not forloop.counter|divisibleby:"2" %}
+					<li><a href="/scholarships/funding-partners/#{{funding_partner.id}}">{{funding_partner.name}}</a></li>
+				{% endif %}
+			{% endfor %}		
+		</ul>
+		<ul class="left funding_partners_list">
+			{% for funding_partner in funding_partners_list %}
+				{% if forloop.counter|divisibleby:"2" %}
+					<li><a href="/scholarships/funding-partners/#{{funding_partner.id}}">{{funding_partner.name}}</a></li>
+				{% endif %}
+			{% endfor %}
+		</ul>
+
+		<h3 class="cB">Lakshya Scholars</h3>	
+		<p>Students pursuing their undergraduate studies in NIT Warangal apply for Lakshya scholarships after they are admitted. Given below are the list of students who receive financial support from Lakshya.</p>
+		<div class="scholar_year_list_with_head left">
+			<h3>Current Scholars</h3>
+			<div class="scholar_year_list">
+				{% for year, scholar_list in scholar_year_list %}
+					{% if year > 2012 %}
+						<p class="year" > {{year|add:"-4"}} - {{year}} batch</p>
+						{% for scholar in scholar_list%}
+							<p><a href="/scholarships/scholars-list/{{scholar.id}}">{{scholar.name}}</a></p>
+						{% endfor %}	
+					{% endif %}	
+				{% endfor %}
+			</div>
+		</div>
+		<div class="scholar_year_list_with_head left">
+			<h3>Graduated Scholars</h3>
+			<div class="scholar_year_list">
+				{% for year, scholar_list in scholar_year_list %}
+					{% if year <= 2012 %}
+						<p class="year" > {{year|add:"-4"}} - {{year}} batch </p>
+						{% for scholar in scholar_list%}
+							<p><a href="/scholarships/scholars-list/{{scholar.id}}">{{scholar.name}}</a></p>
+						{% endfor %}	
+					{% endif %}	
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+</div>
+<div class = "right_navigation_div right">
+	<h3>Financial Assistance Program</h3>
+	<ul>
+		<li>Financial Assistance Program Home</li>
+		<li><a href="/scholarships/about-scholarships-project">About Financial Assistance Program</a></li>
+		<li><a href="/scholarships/scholars-list/16">List of Scholars</a></li>
+		<li><a href="/scholarships/funding-partners">Funding Partners</a></li>
+		<li><a href="/scholarships/apply-scholarships">Apply For Scholarships</a></li>		
+	</ul>
+</div>
+</div>
+{% endblock content %}
